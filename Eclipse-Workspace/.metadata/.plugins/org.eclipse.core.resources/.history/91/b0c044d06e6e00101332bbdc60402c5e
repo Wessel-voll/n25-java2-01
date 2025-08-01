@@ -1,0 +1,29 @@
+package br.com.senaisp.bauru.secao03.aula04;
+
+public class Chickens02 {
+
+	public static void main(String[] args) {
+		double dailyAverage = 0, monthlyAverage = 0, monthlyProfit = 0;
+		double totalEggs = 0;
+		//1° Dia 100 ovos
+		
+		totalEggs = 100;
+		
+		//2° Dia 121 ovos
+		
+		totalEggs += 121;
+		
+		//3° Dia 117 ovos
+		
+		totalEggs +=117;
+		
+		dailyAverage = totalEggs / 3.0;
+		totalEggs = 112 * 30;
+		monthlyAverage = totalEggs;
+		
+        System.out.println("Daily Average:   " +dailyAverage);
+        System.out.println("Monthly Average: " +monthlyAverage);
+        System.out.println("Monthly Profit:  $" +monthlyProfit);
+	}
+
+}

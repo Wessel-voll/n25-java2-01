@@ -1,0 +1,18 @@
+package br.com.senaisp.bauru.secao03.aula04;
+
+public class Chickens01 {
+
+	public static void main(String[] args) {
+		int totalEggs = 0;
+		int eggsPerChicken = 5, chickenCount = 3;
+		/* 1° Dia As galinhas do Fazendeiro Brown sempre colocam eggsPerChicken
+		ovos ao meio-dia, e ele recolhe no mesmo dia*/
+		
+		totalEggs += eggsPerChicken * chickenCount;
+		
+		/* 2° Dia Na segunda-feira, o Fazendeiro Brown tem chickenCount galinhas*/
+		
+		System.out.println(totalEggs);
+	}
+
+}
