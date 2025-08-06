@@ -16,7 +16,7 @@ int europePop   =   547_000_000;
 int americasPop =   339_000_000;
 int oceanaPop   =    13_000_000;
 System.out.println("World Population in 1950: " 
-        + ((long)africaPop +asiaPop +europePop +americasPop +oceanaPop));
+        + ((long)africaPop +asiaPop +europePop +americasPop +oceanaPop));  //Também a como você colocar o 0L+ por que assim ele vai somar o 0 porém vai promover a conta para Long
 
 //The current population of Asia is an estimated 60% of the world population
 double percentAsia = 0.6;

@@ -1,0 +1,24 @@
+package br.com.senaisp.bauru.secao03.aula06;
+
+import javax.swing.JOptionPane;
+
+public class Exercício01 {
+
+	public static void main(String[] args) {
+		JOptionPane.showMessageDialog(null, "Bem vindo ao programa pitipim parapim onde você vai saber qual seu brainrot favorito",
+				"PITIPIM PARAPIM", JOptionPane.INFORMATION_MESSAGE);
+		
+		JOptionPane.showInputDialog(null, "Qual seu Nome?", "NOME DO PARTICIPANTE", JOptionPane.QUESTION_MESSAGE);
+		
+		String[] opções = {"Tralelo Tralala", "Piriipirri Patapim", "Bombardiro Crocodilo"};
+		String resposta = (String)JOptionPane.showInputDialog(null,
+				"Escolha apenas 1 deles",
+				"BRAINROT FAVORITO",
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				opções, opções[1]);
+		
+		System.out.println("Seu brainrot favorito é " + opções);
+	}
+
+}
