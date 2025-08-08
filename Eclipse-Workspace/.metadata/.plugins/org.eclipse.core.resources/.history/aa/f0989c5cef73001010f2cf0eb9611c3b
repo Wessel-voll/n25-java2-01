@@ -1,0 +1,16 @@
+package br.com.senaisp.bauru.secao04.aula08;
+
+import java.util.Scanner;
+
+public class NameMaker {
+
+	public static void main(String[] args) {
+		//Solicitar o nome, nome do meio e sobrenome
+		//Mostrar o nome completo ao término
+		//Pode usar o scanner ou JoptionPane
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite seu nome completo: ");
+	}
+
+}

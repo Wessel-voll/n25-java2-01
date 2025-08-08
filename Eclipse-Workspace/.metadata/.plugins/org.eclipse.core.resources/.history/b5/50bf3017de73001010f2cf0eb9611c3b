@@ -1,0 +1,6 @@
+package br.com.senaisp.bauru.secao04.aula08;
+
+public class Calculadora {
+	private double imposto;
+	private double comissao;
+}
