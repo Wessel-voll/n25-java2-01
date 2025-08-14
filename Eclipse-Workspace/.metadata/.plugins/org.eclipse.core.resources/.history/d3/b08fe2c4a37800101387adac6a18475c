@@ -1,0 +1,17 @@
+package br.com.senaisp.bauru.secao05.aula11;
+
+import java.util.Scanner;
+
+public class CartaTester {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int op;
+		do {
+			
+		} while (op!=3);			
+		Carta ct = new Carta(0, 4);
+		System.out.println(ct);
+	}
+
+}

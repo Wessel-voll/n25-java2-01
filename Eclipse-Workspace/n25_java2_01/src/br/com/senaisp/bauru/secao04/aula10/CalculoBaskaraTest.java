@@ -21,6 +21,7 @@ public class CalculoBaskaraTest {
 		//mostrando x1 e x2
 		System.out.println("Os valor de x1 = " + ca.getX1());
 		System.out.println("Os valor de x2 = " + ca.getX2());
+		sc.close();
 	}
 
 }
