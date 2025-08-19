@@ -1,0 +1,10 @@
+package br.com.senaisp.bauru.secao08.aula13;
+
+public class BaralhoTester {
+
+	public static void main(String[] args) {
+		//Criando baralho
+		Baralho br = new Baralho();
+	}
+
+}
