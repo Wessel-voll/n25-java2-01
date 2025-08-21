@@ -1,0 +1,9 @@
+package br.com.senaisp.bauru.secao08.aula15;
+
+public class Pessoa {
+	private String nome;
+	private int id;
+	private String documento;
+	private String endereco;
+	private String dataNascimento;
+}

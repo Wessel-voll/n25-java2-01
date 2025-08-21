@@ -17,5 +17,7 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula13.BlackJackGame"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao05.aula11.Carta"/>
+    <fullyQualifiedTypeName name="java.net.ResponseCache"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula13.BlackJackPlayer"/>
+    <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula15.Pessoa"/>
 </qualifiedTypeNameHistroy>
