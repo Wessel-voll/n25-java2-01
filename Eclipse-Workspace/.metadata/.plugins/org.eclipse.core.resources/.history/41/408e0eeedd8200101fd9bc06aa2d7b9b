@@ -1,0 +1,5 @@
+package br.com.senaisp.bauru.eduardo.classes;
+
+public class Produto {
+	private int id;
+}

@@ -29,5 +29,8 @@
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula15.DocumentoException"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula15.EnderecoException"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.eduardo.test.ConectorBancoDadosTest"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="br.com.senaisp.bauru.eduardo.classes.ConectorBancoDados"/>
 </qualifiedTypeNameHistroy>
