@@ -1,5 +1,6 @@
 package br.com.senaisp.bauru.eduardo.test;
 
+import java.util.List;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class CadastramentoProduto {
 			// Tratamento para entrada do dado
 			try {
 				op = sc.nextInt();
+				sc.nextLine();
 			} catch (InputMismatchException e) {
 				op = 0;
 				sc.nextLine(); // Captura o enter do erro
@@ -32,58 +34,134 @@ public class CadastramentoProduto {
 			case 1 -> cadastrarProduto(sc);
 			case 2 -> listarProdutos(sc);
 			case 3 -> consultarProduto(sc);
-			case 4 -> cadastrarProduto(sc);
+			case 4 -> alterarProduto(sc);
 			case 5 -> excluirProduto(sc);
 			case 9 -> System.out.println("Então Tchau Tchauuu!");
 			default -> System.out.println("Opção inválida");
 			}
-
+			if (op > 0 && op < 6) {
+				System.out.println("Pressione enter para continuar");
+				sc.nextLine();
+			}
 		} while (op != 9);
+	}
+
+	private static void alterarProduto(Scanner sc) {
+		do {
+			Produto prod = pesquisarProduto(sc);
+			if (prod != null) {
+				mostrarProduto(prod);
+				solicitarProduto(sc, prod);
+				String conf = confirmarOperacao("Deseja Gravar as alterações?(S/N)", sc);
+				if (conf.toLowerCase().equals("s")) {
+					prod.atualizarBanco();
+				}
+				//Falta continua s/n
+			} else {
+				System.out.println("Produto não encontrado!");
+			}
+		} while (true);
 	}
 
 	private static Object excluirProduto(Scanner sc) {
 		return null;
 	}
 
-	private static Object consultarProduto(Scanner sc) {
-		return null;
+	private static void consultarProduto(Scanner sc) {
+		do {
+			Produto prod = pesquisarProduto(sc);
+			sc.nextLine();
+			if (prod != null) {
+				mostrarProduto(prod);
+			} else {
+				System.out.println("Produto não encontrado");
+			}
+			String conf = confirmarOperacao("Deseja pesquisar um novo produto? (S/N)", sc);
+			if (conf.toLowerCase().equals("n")) {
+				break;
+			}
+		} while (true);
 	}
 
-	private static Object listarProdutos(Scanner sc) {
-		return null;
+	private static void mostrarProduto(Produto prod) {
+		System.out.println("Produto: " + prod.getDescricao());
+		System.out.println("Saldo: " + prod.getSaldo());
+		System.out.println("Preço: " + prod.getPreco());
+	}
+
+	private static Produto pesquisarProduto(Scanner sc) {
+		Produto prod = null;
+		do {
+			System.out.println("Digite o id a ser pesquisado: ");
+			try {
+				int pId = sc.nextInt();
+				prod = Produto.consultarProdutoPorId(pId);
+				break;
+			} catch (InputMismatchException e) {
+				System.out.println("Somente valores inteiros");
+				sc.nextLine();
+			}
+		} while (true);
+		return prod;
+	}
+
+	private static void listarProdutos(Scanner sc) {
+		List<Produto> lista = Produto.listarProdutos();
+		for (Produto it : lista) {
+			System.out.print("Produto: " + it.getDescricao());
+			System.out.println(" - " + it.getId() + " - ");
+			System.out.println("Saldo: " + it.getSaldo());
+		}
+		System.out.println("Fim da Lista....");
 	}
 
 	private static void cadastrarProduto(Scanner sc) {
 		System.out.println("Cadastramento de produto");
 		do {
 			try {
-				if (sc.hasNext()) sc.nextLine(); // Se tiver algo ainda no scanner, capturamos na linha acima
-				System.out.println("Digite a descrição: ");
-				String desc = sc.nextLine();
-
-				System.out.println("Digite Seu saldo: ");
-				double saldo = sc.nextDouble();
-
-				System.out.println("Digite o preço: ");
-				double preco = sc.nextDouble();
+				Produto prod = new Produto();
+				
+				solicitarProduto(sc, prod);
 				
 				sc.nextLine(); // capturando o enter do preco
 				System.out.println("Confirma as informações? (S/N)");
 				String conf = sc.nextLine();
-				
+
 				if (conf.toLowerCase().equals("s")) {
 					try {
-						Produto.create(desc, saldo, preco);
+						Produto.create(prod.getDescricao(), prod.getSaldo(), prod.getPreco());
 					} catch (SQLException e) {
 						System.out.println("Problema ao gravar registro! " + e.getMessage());
 					}
 				}
+				conf = confirmarOperacao("Deseja cadastrar mais um produto? (S/N):", sc);
+				if (conf.toLowerCase().equals("n")) {
+					break;
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("Por favor, digite somente números!");
-				e.printStackTrace();
+				sc.nextLine(); // Captura o enter do erro
 			}
 		} while (true);
 
+	}
+
+	private static void solicitarProduto(Scanner sc, Produto prod) {
+		System.out.println("Digite a descrição: ");
+		prod.setDescricao(sc.nextLine());
+
+		System.out.println("Digite Seu saldo: ");
+		prod.setSaldo(sc.nextDouble());
+
+		System.out.println("Digite o preço: ");
+		prod.setPreco(sc.nextDouble());
+	}
+
+	private static String confirmarOperacao(String msg, Scanner sc) {
+		String conf;
+		System.out.println(msg);
+		conf = sc.nextLine();
+		return conf;
 	}
 
 }
