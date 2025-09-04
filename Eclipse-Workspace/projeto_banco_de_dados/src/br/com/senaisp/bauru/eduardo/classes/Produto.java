@@ -1,13 +1,12 @@
 package br.com.senaisp.bauru.eduardo.classes;
 
-import java.util.List;
-import java.awt.Taskbar.State;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Produto {
 	private int id;
@@ -26,6 +25,7 @@ public class Produto {
 	}
 
 	public Produto() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getDescricao() {
@@ -65,35 +65,36 @@ public class Produto {
 	}
 
 	// Métodos
-	public void atualizarBanco () { //save()
-		String sql = "update produto set descricao = ?, saldo = ?, preco = ? where id = ?";
-		//Para salvar o registro, o id deve ser maior que zero
-		if (id>0) {
+	public void atualizarBanco() { // save()
+		String sql = "update produto set descricao = ?, " + "saldo = ?, preco = ? where id = ?";
+		// Para salvar o registro, o id deve ser maior que zero
+		if (id > 0) {
 			try {
 				PreparedStatement stmt = conn.getConnection().prepareStatement(sql);
-				//Passando os parâmetros para o sql
+				// Passando os parâmetros para o sql
 				stmt.setString(1, getDescricao());
 				stmt.setDouble(2, getSaldo());
 				stmt.setDouble(3, getPreco());
 				stmt.setInt(4, id);
-				//Executando a query
+				// Executando a query
 				int numLin = stmt.executeUpdate();
 				System.out.println("Foram afetadas " + numLin + " linhas");
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 	}
-	public void apagarRegistro () {
+
+	public void apagarRegistro() {
 		String sql = "delete from produto where id = ?";
-		//Para salvar o registro, o id deve ser maior que zero
-		if (id>0) {
+		// Para salvar o registro, o id deve ser maior que zero
+		if (id > 0) {
 			try {
 				PreparedStatement stmt = conn.getConnection().prepareStatement(sql);
-				//Passando os parâmetros para o sql
+				// Passando os parâmetros para o sql
 				stmt.setInt(1, id);
-				//Executando a query
+				// Executando a query
 				int numLin = stmt.executeUpdate();
 				System.out.println("Foram afetadas " + numLin + " linhas");
 				//Limpando os conteúdos do objeto
@@ -102,17 +103,18 @@ public class Produto {
 				saldo = 0;
 				id = 0;
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 	}
-	//Métodos estáticos
+
+	// Métodos estáticos
 	public static Produto create(String descricao, double saldo, double preco) throws SQLException {
 		Produto prd = new Produto(descricao, saldo, preco);
 		// Disparando o sql para inserir o registro
 		Connection co = prd.getConn().getConnection();
-		String sql = "insert into produto (descricao, saldo, preco) values (? , ?, ?)";
+		String sql = "insert into produto(descricao,saldo,preco) " + "values (?, ?, ?)";
 		// Preparando para executar
 		PreparedStatement stmt = co.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		// Setar os valores das ?
@@ -122,10 +124,10 @@ public class Produto {
 		// Disparando o sql
 		int linhasAfetadas = stmt.executeUpdate();
 		System.out.println("Inseri " + linhasAfetadas + " no banco");
-		// Obtendo o Id gerado
+		// Obtendo o id gerado
 		ResultSet res = stmt.getGeneratedKeys();
 		res.next();
-		// Obtendo o valor do id e setando no field Id do Produto
+		// Obtendo o valor do Id e setando no field Id do Produto
 		prd.setId(res.getInt(1));
 		return prd;
 	}
@@ -134,7 +136,7 @@ public class Produto {
 		ArrayList<Produto> prd = new ArrayList<Produto>();
 		try {
 			Connection co = ConectorBancoDados.getInstancia().getConnection();
-			String sql = "select id, descricao, saldo, preco from produto order by id";
+			String sql = "select id, descricao, saldo, " + " preco from produto order by id";
 			PreparedStatement stmt = co.prepareStatement(sql);
 			// Disparando o sql de consulta
 			ResultSet rs = stmt.executeQuery();
@@ -154,7 +156,7 @@ public class Produto {
 		Produto ret = null;
 		try {
 			Connection conn = ConectorBancoDados.getInstancia().getConnection();
-			String sql = "select id, descricao, saldo, preco from produto where id = ?";
+			String sql = "select id, descricao, saldo, preco " + "from produto where id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			// Atribuindo o id para disparar a query
 			stmt.setInt(1, pId);
@@ -163,6 +165,7 @@ public class Produto {
 				ret = parseResultado(rs);
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ret;

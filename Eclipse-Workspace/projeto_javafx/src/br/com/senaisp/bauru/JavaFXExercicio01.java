@@ -1,0 +1,29 @@
+package br.com.senaisp.bauru;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class JavaFXExercicio01 extends Application {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		//Criando o no Root
+		Group noRoot = new Group();
+		//Componentes do nó root
+		HBox cmp1 = new HBox();
+		Rectangle cmp2 = new Rectangle(100,100,Color.RED);
+		Text cmp3 = new Text("Dorm 6:\n200");
+		ImageView cmp4 = new ImageView();
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+}
