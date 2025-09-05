@@ -1,0 +1,71 @@
+package br.com.senaisp.bauru;
+
+
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class JavaFXExercicio01 extends Application {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		//Criando o no Root
+		Group noRoot = new Group();
+		//Criando os componentes da tela
+		criarComponentes(noRoot);
+		
+		//Criando a cena
+		Scene cena = new Scene(noRoot,400,400,Color.WHITE);
+		primaryStage.setTitle("Itens JavaFX");
+		primaryStage.setScene(cena);
+		primaryStage.show();
+	}
+
+	private void criarComponentes(Group noRoot) {
+		//Componentes do nó root
+		HBox cmp1 = new HBox();
+		Rectangle cmp2 = new Rectangle(100,100,Color.RED);
+		Text cmp3 = new Text("Dorm 6:\n200");
+		Image img = new Image(getClass().getResource("Images/Duke.png").toString());
+		ImageView cmp4 = new ImageView(img);
+		//Redimensionar a imagem
+		cmp4.setFitWidth(100); //Deixando com 100px de largura
+		//Ajuste para não distorcer a imagem
+		cmp4.setPreserveRatio(true);
+		//Criando os três botões
+		Button bt1 = new Button("Say 'Hello World'");
+		Button bt2 = new Button("Say Say Say");
+		Button bt3 = new Button("No no no");
+		//Amarrando os componentes
+		noRoot.getChildren().addAll(cmp1,cmp2,cmp3,cmp4);
+		cmp1.getChildren().addAll(bt1,bt2,bt3);
+		//Ajustando posições
+		cmp1.setLayoutY(300);
+		cmp1.setPrefWidth(400);
+		//Ajustando a imagem
+		cmp4.setLayoutX(290);
+		cmp4.setLayoutY(10);
+		//Ajustando o texto
+		//https://docs.oracle.com/javafx/2/text/jfxpub-text.htm
+		cmp3.setLayoutX(150);
+		cmp3.setLayoutY(200);
+		cmp3.setFont(Font.font("Verdana",FontWeight.BOLD,20));
+		cmp3.setFill(Color.RED);
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+}
