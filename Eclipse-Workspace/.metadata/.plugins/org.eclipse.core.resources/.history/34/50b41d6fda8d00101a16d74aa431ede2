@@ -1,0 +1,65 @@
+package br.com.senaisp.bauru.classes;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class ManipuladorImagensApp extends Application {
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Group noRoot = new Group();
+		criarComponentes(noRoot);
+		Scene scena = new Scene(noRoot, 800, 600, Color.BEIGE);
+		primaryStage.setTitle("Manipulando Mídias");
+		primaryStage.setScene(scena); 
+		primaryStage.show();
+	}
+
+	private void criarComponentes(Group noRoot) {
+		Media video = new Media(getClass().getResource("Videos/video.mp4").toString());
+		MediaPlayer mp = new MediaPlayer(video);
+		MediaView mv = new MediaView(mp);
+		//Dimensionando o media view
+		mv.setFitWidth(600);
+		mv.setFitHeight(400);
+		//Preserva a proporção do video
+		mv.setPreserveRatio(true);
+		//Posicionando na tela
+		mv.setX(100);
+		mv.setY(100);
+		//Criando os botões para tocar o video
+		Button btPlay = new Button("Play");
+		Button btPause = new Button("Pause");
+		Button btStop = new Button("Stop");
+		//Posicionando os botões
+		btPlay.setLayoutX(100);
+		btPause.setLayoutX(200);
+		btStop.setLayoutX(300);
+		
+		btPlay.setLayoutY(450);
+		btPause.setLayoutY(450);
+		btStop.setLayoutY(450);
+		//Criando as ações dos botões
+		btPlay.setOnAction((ev)->{ mp.play(); });
+		btPause.setOnAction((ev)->{ mp.pause(); });
+		btStop.setOnAction((ev)->{ mp.stop(); });
+		//Adicionando no nó root
+		//Criando o Duke
+		Duke duk = new Duke();
+		duk.setLayoutX(20);
+		duk.setLayoutY(20);
+		noRoot.getChildren().addAll(mv,btPlay,btPause,btStop, duk);
+	}
+
+}
